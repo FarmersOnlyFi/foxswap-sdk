@@ -27,10 +27,10 @@ export enum Rounding {
 
 export const FACTORY_ADDRESSES: { [chainId in ChainId]: string } = {
   [ChainId.HARMONY_MAINNET]: '0x78BBeaD2401dee2187abf244445D3EFF4eA29ad6',
-  [ChainId.HARMONY_TESTNET]: '0x78BBeaD2401dee2187abf244445D3EFF4eA29ad6'
+  [ChainId.HARMONY_TESTNET]: '0x0D2e318b58a362a091aF57085a0ab03bB7074a48'
 }
 
-export const INIT_CODE_HASH = '0xbf85fb8a5b8c32427ec5e1dbafe83aec1ed34753afe54996bb31557b588f8b5d'
+export const INIT_CODE_HASH = '0x6be983fca8cd114a38e7c87a92f0bf4c13f5e8e006242d62f7277ca478e65ffe'
 
 export const MINIMUM_LIQUIDITY = JSBI.BigInt(1000)
 
