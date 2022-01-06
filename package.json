@@ -1,7 +1,7 @@
 {
   "name": "@foxswap/sdk",
   "license": "MIT",
-  "version": "1.2.1",
+  "version": "1.2.2",
   "description": "🛠 An SDK for building applications on top of FoxSwap.",
   "main": "dist/index.js",
   "private": false,
