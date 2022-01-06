@@ -26,7 +26,7 @@ export enum Rounding {
 }
 
 export const FACTORY_ADDRESSES: { [chainId in ChainId]: string } = {
-  [ChainId.HARMONY_MAINNET]: '0x78BBeaD2401dee2187abf244445D3EFF4eA29ad6',
+  [ChainId.HARMONY_MAINNET]: '0xfA53b963A39621126bf45F647F813952cD3c5C66',
   [ChainId.HARMONY_TESTNET]: '0x487e1b2F84d3b02E4ba209D994825761920df8d0'
 }
 
