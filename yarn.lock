@@ -1160,6 +1160,11 @@
   resolved "https://registry.yarnpkg.com/@foxswap/core/-/core-1.0.1.tgz#8e8dbb567bf50154d5158183afa7eb78ad7efa85"
   integrity sha512-UWpJJsOc0sAkRtViggJ/ACLCAGgVbgJ1TsXdJsHdM0NOZ8LQB4bhzKNPb8+x/rAIOFSRQA10hyWu+ZZtSP/QfQ==
 
+"@foxswap/default-token-list@^2.1.4":
+  version "2.1.6"
+  resolved "https://registry.yarnpkg.com/@foxswap/default-token-list/-/default-token-list-2.1.6.tgz#05dfaf81668c886180626172c46cfc8f134851df"
+  integrity sha512-AUzbUztyjfKJddZaLFCwSYSQYfoNOpyDyDDqKj726POQOmoKFUUj3N0WTaCPLLQiMTZ6GtFkpp9Xe7WVOOxoLQ==
+
 "@jest/console@^24.7.1", "@jest/console@^24.9.0":
   version "24.9.0"
   resolved "https://registry.yarnpkg.com/@jest/console/-/console-24.9.0.tgz#79b1bc06fb74a8cfb01cbdedf945584b1b9707f0"
@@ -4493,6 +4498,11 @@ lodash.merge@^4.6.2:
   version "4.6.2"
   resolved "https://registry.yarnpkg.com/lodash.merge/-/lodash.merge-4.6.2.tgz#558aa53b43b661e1925a0afdfa36a9a1085fe57a"
   integrity sha512-0KpjqXRVvrYyCsX1swR/XTK0va6VQkQM6MNo7PqW77ByjAhoARA8EfrP1N4+KlKj8YS0ZUCtRT/YUuhyYDujIQ==
+
+lodash.random@^3.2.0:
+  version "3.2.0"
+  resolved "https://registry.yarnpkg.com/lodash.random/-/lodash.random-3.2.0.tgz#96e24e763333199130d2c9e2fd57f91703cc262d"
+  integrity sha1-luJOdjMzGZEw0sni/Vf5FwPMJi0=
 
 lodash.sortby@^4.7.0:
   version "4.7.0"
