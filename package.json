@@ -1,7 +1,7 @@
 {
   "name": "@foxswap/sdk",
   "license": "MIT",
-  "version": "1.2.3",
+  "version": "1.2.4",
   "description": "🛠 An SDK for building applications on top of FoxSwap.",
   "main": "dist/index.js",
   "private": false,
@@ -29,10 +29,10 @@
     "big.js": "^5.2.2",
     "decimal.js-light": "^2.5.0",
     "jsbi": "^3.1.1",
+    "lodash.random": "^3.2.0",
     "tiny-invariant": "^1.1.0",
     "tiny-warning": "^1.0.3",
-    "toformat": "^2.0.0",
-    "lodash.random": "^3.2.0"
+    "toformat": "^2.0.0"
   },
   "peerDependencies": {
     "@ethersproject/address": "^5.0.0-beta",
