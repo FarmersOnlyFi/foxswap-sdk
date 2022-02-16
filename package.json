@@ -1,7 +1,7 @@
 {
   "name": "@foxswap/sdk",
   "license": "MIT",
-  "version": "1.2.4",
+  "version": "1.2.5",
   "description": "🛠 An SDK for building applications on top of FoxSwap.",
   "main": "dist/index.js",
   "private": false,
@@ -25,7 +25,7 @@
   },
   "dependencies": {
     "@foxswap/core": "^1.0.1",
-    "@foxswap/default-token-list": "^2.1.4",
+    "@foxswap/default-token-list": "^2.2.2",
     "big.js": "^5.2.2",
     "decimal.js-light": "^2.5.0",
     "jsbi": "^3.1.1",
