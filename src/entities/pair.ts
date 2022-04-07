@@ -1,33 +1,35 @@
-import { Price } from './fractions/price'
-import { TokenAmount } from './fractions/tokenAmount'
+import {Price} from './fractions/price'
+import {TokenAmount} from './fractions/tokenAmount'
 import invariant from 'tiny-invariant'
 import JSBI from 'jsbi'
-import { pack, keccak256 } from '@ethersproject/solidity'
-import { getCreate2Address } from '@ethersproject/address'
+import {keccak256, pack} from '@ethersproject/solidity'
+import {getCreate2Address} from '@ethersproject/address'
 
 import {
+  _1000,
   BigintIsh,
+  ChainId,
   FACTORY_ADDRESSES,
+  PROTOCOL_FEE,
+  FIVE,
   INIT_CODE_HASH,
   MINIMUM_LIQUIDITY,
-  ZERO,
   ONE,
-  FIVE,
-  _997,
-  _1000,
-  ChainId
+  Protocol,
+  ZERO
 } from '../constants'
-import { sqrt, parseBigintIsh } from '../utils'
-import { InsufficientReservesError, InsufficientInputAmountError } from '../errors'
-import { Token } from './token'
+import {parseBigintIsh, sqrt} from '../utils'
+import {InsufficientInputAmountError, InsufficientReservesError} from '../errors'
+import {Token} from './token'
 
 let PAIR_ADDRESS_CACHE: { [token0Address: string]: { [token1Address: string]: string } } = {}
 
 export class Pair {
   public readonly liquidityToken: Token
+  public readonly protocol: Protocol
   private readonly tokenAmounts: [TokenAmount, TokenAmount]
 
-  public static getAddress(tokenA: Token, tokenB: Token): string {
+  public static getAddress(tokenA: Token, tokenB: Token, protocol: Protocol = Protocol.FOXSWAP): string {
     const tokens = tokenA.sortsBefore(tokenB) ? [tokenA, tokenB] : [tokenB, tokenA] // does safety checks
 
     if (PAIR_ADDRESS_CACHE?.[tokens[0].address]?.[tokens[1].address] === undefined) {
@@ -36,9 +38,9 @@ export class Pair {
         [tokens[0].address]: {
           ...PAIR_ADDRESS_CACHE?.[tokens[0].address],
           [tokens[1].address]: getCreate2Address(
-            FACTORY_ADDRESSES[tokenA.chainId],
+            FACTORY_ADDRESSES[protocol],
             keccak256(['bytes'], [pack(['address', 'address'], [tokens[0].address, tokens[1].address])]),
-            INIT_CODE_HASH
+            INIT_CODE_HASH[protocol]
           )
         }
       }
@@ -47,18 +49,19 @@ export class Pair {
     return PAIR_ADDRESS_CACHE[tokens[0].address][tokens[1].address]
   }
 
-  public constructor(tokenAmountA: TokenAmount, tokenAmountB: TokenAmount) {
+  public constructor(tokenAmountA: TokenAmount, tokenAmountB: TokenAmount, protocol: Protocol = Protocol.FOXSWAP) {
     const tokenAmounts = tokenAmountA.token.sortsBefore(tokenAmountB.token) // does safety checks
       ? [tokenAmountA, tokenAmountB]
       : [tokenAmountB, tokenAmountA]
     this.liquidityToken = new Token(
       tokenAmounts[0].token.chainId,
-      Pair.getAddress(tokenAmounts[0].token, tokenAmounts[1].token),
+      Pair.getAddress(tokenAmounts[0].token, tokenAmounts[1].token, protocol),
       18,
       'FOX-LP',
       'FOX LP Token'
     )
     this.tokenAmounts = tokenAmounts as [TokenAmount, TokenAmount]
+    this.protocol = protocol
   }
 
   /**
@@ -127,7 +130,7 @@ export class Pair {
     }
     const inputReserve = this.reserveOf(inputAmount.token)
     const outputReserve = this.reserveOf(inputAmount.token.equals(this.token0) ? this.token1 : this.token0)
-    const inputAmountWithFee = JSBI.multiply(inputAmount.raw, _997)
+    const inputAmountWithFee = JSBI.multiply(inputAmount.raw, PROTOCOL_FEE[this.protocol])
     const numerator = JSBI.multiply(inputAmountWithFee, outputReserve.raw)
     const denominator = JSBI.add(JSBI.multiply(inputReserve.raw, _1000), inputAmountWithFee)
     const outputAmount = new TokenAmount(
@@ -153,7 +156,7 @@ export class Pair {
     const outputReserve = this.reserveOf(outputAmount.token)
     const inputReserve = this.reserveOf(outputAmount.token.equals(this.token0) ? this.token1 : this.token0)
     const numerator = JSBI.multiply(JSBI.multiply(inputReserve.raw, outputAmount.raw), _1000)
-    const denominator = JSBI.multiply(JSBI.subtract(outputReserve.raw, outputAmount.raw), _997)
+    const denominator = JSBI.multiply(JSBI.subtract(outputReserve.raw, outputAmount.raw), PROTOCOL_FEE[this.protocol])
     const inputAmount = new TokenAmount(
       outputAmount.token.equals(this.token0) ? this.token1 : this.token0,
       JSBI.add(JSBI.divide(numerator, denominator), ONE)
