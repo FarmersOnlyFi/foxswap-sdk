@@ -1160,10 +1160,10 @@
   resolved "https://registry.yarnpkg.com/@foxswap/core/-/core-1.0.1.tgz#8e8dbb567bf50154d5158183afa7eb78ad7efa85"
   integrity sha512-UWpJJsOc0sAkRtViggJ/ACLCAGgVbgJ1TsXdJsHdM0NOZ8LQB4bhzKNPb8+x/rAIOFSRQA10hyWu+ZZtSP/QfQ==
 
-"@foxswap/default-token-list@^2.3.0":
-  version "2.3.0"
-  resolved "https://registry.yarnpkg.com/@foxswap/default-token-list/-/default-token-list-2.3.0.tgz#3db360674128c8c6c0855240d7791a0ffdaf230c"
-  integrity sha512-mx6l9CT02kHu71a0FUf/0qr60+ZXVgg1ch1eoSzz6IM6pbWt6gwLDo9h1z3+Fr5IjZQ6TY4u6ExnPSpYVez59Q==
+"@foxswap/default-token-list@^2.3.1":
+  version "2.3.1"
+  resolved "https://registry.yarnpkg.com/@foxswap/default-token-list/-/default-token-list-2.3.1.tgz#e6f0ade410cd5e54573408ad8472e4357130e808"
+  integrity sha512-jn6Mq0Pg4PLChQs4ClBSwMXgW1rjKw70dMbtZLBQMzs1GYTCeYlpi7W6ariyl8W/NGLeiSZP00DpBoRcY5TCIA==
 
 "@jest/console@^24.7.1", "@jest/console@^24.9.0":
   version "24.9.0"
